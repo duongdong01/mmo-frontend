@@ -75,10 +75,10 @@ function OauthButton({ className }: { className?: string }) {
   );
 }
 
-function FormLogin({ setIsLogin, handleClose }: { setIsLogin: React.Dispatch<boolean>; handleClose: Function }) {
+function FormLogin({ setIsLogin, handleClose }: { setIsLogin: React.Dispatch<boolean>; handleClose: any }) {
   const [values, setValues] = useState<{ email: string; password: string }>({
     email: '',
-    password: '',
+    password: ''
   });
 
   const [invalidField, setInvalidField] = useState<{
@@ -412,7 +412,7 @@ export default function DialogAuth({ setIsLogin }: { setIsLogin: React.Dispatch<
 
   return (
     <React.Fragment>
-      <div className="flex gap-4">
+      <div className="flex flex-row gap-4 max-h-11 mt-3">
         <Button
           variant="outlined"
           onClick={() => {
