@@ -60,7 +60,6 @@ export default function Search() {
       console.log(error);
     }
   };
-
   const handleChangeCategoryId = (event: SelectChangeEvent) => {
     setCategoryId(event.target.value as string);
     setCategoryId((prev) => {

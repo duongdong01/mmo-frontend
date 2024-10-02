@@ -24,13 +24,21 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
-
-type Category = {
+import { Link } from 'react-router-dom';
+import { UseAppDispatch } from '../../stores/app/hook';
+import {
+  setCategoryProduct as setCategoryProducts,
+  setCategoryService as setCategoryServices,
+} from '../../stores/slice/category.slice';
+import categorySlice from '../../stores/slice/category.slice';
+import zIndex from '@mui/material/styles/zIndex';
+interface Category {
   id: string;
   name: string;
+  type: string;
   created_at: string;
   updated_at: string;
-};
+}
 
 function TabLists() {
   const [value, setValue] = useState(-1);
@@ -197,7 +205,7 @@ function BasicPopover() {
   const id = open ? 'simple-popover' : undefined;
 
   return (
-    <div>
+    <div className="my-auto">
       <IconButton onClick={handleClick}>
         <Avatar>H</Avatar>
       </IconButton>
@@ -211,7 +219,7 @@ function BasicPopover() {
           horizontal: 'left',
         }}
       >
-        <Typography sx={{ p: 2 }}>
+        <Typography component={'span'} sx={{ zIndex: 10 }}>
           <NestedList handleClose={handleClose}></NestedList>
         </Typography>
       </Popover>
@@ -234,7 +242,7 @@ function NestedList({ handleClose }: { handleClose: Function }) {
         <ListItemIcon>
           <PersonIcon />
         </ListItemIcon>
-        <ListItemText primary="Thông tin cá nhân" />
+        <Link to="/profile/9123">Thông tin cá nhân</Link>
       </ListItemButton>
       <ListItemButton
         onClick={() => {
@@ -291,7 +299,7 @@ export default function PageHeader() {
   }, []);
 
   return (
-    <div className="flex flex-row w-full justify-between items-center h-16">
+    <div className="flex flex-row justify-around h-16 px-4">
       <div className="logo bg-black w-32 h-14"></div>
       <TabLists></TabLists>
       {isLogin ? (
